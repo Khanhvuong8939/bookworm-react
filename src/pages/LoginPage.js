@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import LoginForm from './../components/forms/LoginForm'
+import { login } from './../actions/auth.js';
+import { connect } from 'react-redux';
+
 class LoginPage extends Component {
 
-    submit = data => {
-        console.log(data)
-    }
+    submit = data => this.props.login(data).then(console.log('success'))
 
     render() {
         return (
@@ -16,4 +17,11 @@ class LoginPage extends Component {
     }
 }
 
-export default LoginPage;
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+        login: (data) => { dispatch(login(data)) }
+    }
+
+}
+
+export default connect(null, mapDispatchToProps)(LoginPage);
