@@ -10,8 +10,8 @@ class LoginForm
 
         this.state = {
             data: {
-                txtEmail: '',
-                txtPassword: '',
+                email: '',
+                password: '',
                 chkbRememberMe: false
             },
             loading: false,
@@ -30,7 +30,10 @@ class LoginForm
 
     onSubmit = e => {
         e.preventDefault();
-        var { data } = this.state;
+        var data = {
+            email: this.state.data.email,
+            password: this.state.data.password
+        }
         const errors = this.validate(data);
         this.setState({ errors })
         if (Object.keys(errors).length === 0) {
@@ -43,42 +46,42 @@ class LoginForm
 
     validate = data => {
         const errors = {};
-        if (!validator.isEmail(data.txtEmail)) errors.txtEmail = 'Invalid email';
-        if (!data.txtPassword) errors.txtPassword = 'Password cannot be blank';
+        if (!validator.isEmail(data.email)) errors.email = 'Invalid email';
+        if (!data.password) errors.password = 'Password cannot be blank';
         return errors;
     }
 
     render() {
-        let { txtEmail, txtPassword, chkbRememberMe } = this.state.data;
+        let { email, password, chkbRememberMe } = this.state.data;
         let { errors, loading } = this.state;
         return (
-            <form onSubmit={this.onSubmit} loading={loading}>
+            <form onSubmit={this.onSubmit} load={`${loading}`}>
                 {errors.global ? this.showServerAlert(errors) : ''}
-                <div className={`form-group ${errors.txtEmail ? 'has-error' : ''}`}>
+                <div className={`form-group ${errors.email ? 'has-error' : ''}`}>
                     <label>Username: </label>
                     <input
                         type="text"
                         className="form-control"
                         placeholder="Enter Email"
-                        name='txtEmail'
-                        value={txtEmail}
+                        name='email'
+                        value={email}
                         onChange={this.onChange}
                     />
-                    {errors.txtEmail && <InlineError message={errors.txtEmail} />}
+                    {errors.email && <InlineError message={errors.email} />}
                 </div>
 
-                <div className={`form-group ${errors.txtPassword ? 'has-error' : ''}`}>
+                <div className={`form-group ${errors.password ? 'has-error' : ''}`}>
                     <br />
                     <label>Password: </label>
                     <input
                         type="password"
                         className="form-control"
                         placeholder="Make it secure"
-                        name='txtPassword'
-                        value={txtPassword}
+                        name='password'
+                        value={password}
                         onChange={this.onChange}
                     />
-                    {errors.txtPassword && <InlineError message={errors.txtPassword} />}
+                    {errors.password && <InlineError message={errors.password} />}
                 </div>
                 <div className="form-group">
                     <div className="checkbox">
