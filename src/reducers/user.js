@@ -7,8 +7,9 @@ const initialState = [
 const user = (state = initialState, action) => {
     switch (action.type) {
         case USER_LOGGED_IN:
-            console.log('12123123?')
-            return action.user;
+            console.log('123')
+            console.log(action)
+            return [];
         default: return [...state];
     }
 }

@@ -14,6 +14,7 @@ class LoginForm
                 txtPassword: '',
                 chkbRememberMe: false
             },
+            loading: false,
             errors: {}
         }
     }
@@ -29,11 +30,14 @@ class LoginForm
 
     onSubmit = e => {
         e.preventDefault();
-        var {data} = this.state;
+        var { data } = this.state;
         const errors = this.validate(data);
         this.setState({ errors })
         if (Object.keys(errors).length === 0) {
-            this.props.submit(data);
+            this.setState({ loading: true })
+            this.props
+                .submit(data)
+                .catch(err => this.setState({ errors: err.response.data.errors, loading: false }))
         }
     }
 
@@ -46,9 +50,10 @@ class LoginForm
 
     render() {
         let { txtEmail, txtPassword, chkbRememberMe } = this.state.data;
-        let { errors } = this.state;
+        let { errors, loading } = this.state;
         return (
-            <form onSubmit={this.onSubmit}>
+            <form onSubmit={this.onSubmit} loading={loading}>
+                {errors.global ? this.showServerAlert(errors) : ''}
                 <div className={`form-group ${errors.txtEmail ? 'has-error' : ''}`}>
                     <label>Username: </label>
                     <input
@@ -94,6 +99,18 @@ class LoginForm
             </form>
 
         );
+    }
+
+    showServerAlert = messages => {
+        console.log(messages)
+        return (
+            < div className="alert alert-danger" >
+                <strong>Some thing went wrong: </strong>
+                <br />
+                {messages.global}
+            </div >
+        )
+
     }
 }
 

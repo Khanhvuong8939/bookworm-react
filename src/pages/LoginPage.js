@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 
 class LoginPage extends Component {
 
-    submit = data => this.props.login(data).then(console.log('success'))
+    submit = data => this.props.login(data).then(() => this.props.history.push('/'));
+
 
     render() {
         return (
@@ -19,7 +20,7 @@ class LoginPage extends Component {
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        login: (data) => { dispatch(login(data)) }
+        login: (data) => dispatch(login(data))
     }
 
 }

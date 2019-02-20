@@ -25,8 +25,6 @@ class App extends Component {
                 return <Route path={route.path} exact={route.exact} component={route.main} key={index} />
             })
         }
-        console.log(result)
-
         return <Switch>{result}</Switch>;
     }
 }
