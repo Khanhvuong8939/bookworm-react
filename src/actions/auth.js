@@ -1,4 +1,4 @@
-import { USER_LOGGED_IN } from './../constants/types';
+import { USER_LOGGED_IN, USER_LOGGED_OUT } from './../constants/types';
 import api from '../api/api';
 
 export const userLoggedIn = user => ({
@@ -6,8 +6,20 @@ export const userLoggedIn = user => ({
     user
 });
 
+export const userLoggedOut = () => {
+    return {
+        type: USER_LOGGED_OUT
+    }
+}
+
 export const login = credentials => dispatch =>
     api.user.login(credentials).then(user => {
         localStorage.setItem('bookwormJWT', user.token)
         dispatch(userLoggedIn(user))
     });
+
+export const logout = () => dispatch => {
+    console.log('??')
+    localStorage.removeItem('bookwormJWT');
+    dispatch(userLoggedOut());
+}
