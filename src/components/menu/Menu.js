@@ -8,6 +8,10 @@ const menus = [
         label: 'HomePage'
     },
     {
+        to: '/dashboard',
+        label: 'Dashboard'
+    },
+    {
         to: '/login',
         label: 'Login'
     }

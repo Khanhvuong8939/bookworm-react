@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import App from './components/app/App';
 import * as serviceWorker from './serviceWorker';
 import { userLoggedIn } from './actions/auth';
@@ -14,14 +15,16 @@ const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(AppReducer, composeEnhancer(applyMiddleware(thunk)))
 
 if (localStorage.bookwormJWT) {
-    const user = {token: localStorage.bookwormJWT}
+    const user = { token: localStorage.bookwormJWT }
     store.dispatch(userLoggedIn(user))
 }
 
 ReactDOM.render(
-    <Provider store={store}>
-        <App />
-    </Provider>
+    <Router>
+        <Provider store={store}>
+            <Route component={App} />
+        </Provider>
+    </Router>
     , document.getElementById('root'));
 
 
