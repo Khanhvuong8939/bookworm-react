@@ -9,7 +9,8 @@ class DashboardPage extends Component {
         var { isConfirmed } = this.props;
         return (
             <div>
-                {this.verifyEmail(isConfirmed)}
+                {isConfirmed ? this.verifyEmail(isConfirmed) : ''}
+                abc
             </div>
         );
     }

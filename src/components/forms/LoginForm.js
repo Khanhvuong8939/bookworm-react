@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import validator from 'validator';
 import InlineError from './../messages/InlineError';
 import PropTypes from 'prop-types';
+import ServerMessage from '../messages/ServerMessage';
 
 class LoginForm
     extends Component {
@@ -98,23 +99,18 @@ class LoginForm
                     </div>
                 </div>
                 <button type="submit" className="btn btn-primary mr-5">Submit</button>
-                <button className="btn btn-danger" onClick={() => this.onReset}>Reset</button>
+                <button className="btn btn-danger mr-5" onClick={() => this.onReset}>Reset</button>
+                
+                
             </form>
+            
+
 
         );
     }
 
-    showServerAlert = messages => {
-        console.log(messages)
-        return (
-            < div className="alert alert-danger" >
-                <strong>Some thing went wrong: </strong>
-                <br />
-                {messages.global}
-            </div >
-        )
+    showServerAlert = messages => <ServerMessage errStyle='danger' header='Something went wrong: ' content={messages.global} />
 
-    }
 }
 
 LoginForm.propTypes = {

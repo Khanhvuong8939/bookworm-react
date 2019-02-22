@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import NotFoundPage from './pages/NotFoundPage';
 import DashboardPage from './pages/DashboardPage';
+import SignUpPage from './pages/SignUpPage';
 
 const routes = [
     {
@@ -19,10 +20,16 @@ const routes = [
         main: ({ history }) => <LoginPage history={history} />
     },
     {
+        path: '/signup',
+        exact: false,
+        role: 'guest',
+        main: () => <SignUpPage />
+    },
+    {
         path: '/dashboard',
         exact: false,
         role: 'user',
-        main: () => <DashboardPage />
+        main: ({ history }) => <DashboardPage history={history} />
     },
     {
         path: '',

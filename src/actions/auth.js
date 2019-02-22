@@ -22,3 +22,4 @@ export const logout = () => dispatch => {
     localStorage.removeItem('bookwormJWT');
     dispatch(userLoggedOut());
 }
+

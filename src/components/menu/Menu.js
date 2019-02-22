@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-
 import { Route, Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { logout } from './../../actions/auth'
+
 
 const menus = [
     {
@@ -10,10 +12,6 @@ const menus = [
     {
         to: '/dashboard',
         label: 'Dashboard'
-    },
-    {
-        to: '/login',
-        label: 'Login'
     }
 
 ]
@@ -33,14 +31,19 @@ const MenuLink = ({ label, to, exact }) => (
 
 class Menu extends Component {
 
-
-
     render() {
+        var { isAuthenticated } = this.props;
         return (
             <nav className="navbar navbar-inverse">
-                <ul className="nav navbar-nav">.
-                    {this.showMenus(menus)}
-                </ul>
+                <div className="container-fluid">
+                    <ul className="nav navbar-nav">
+                        {this.showMenus(menus)}
+                    </ul>
+                    <ul className="nav navbar-nav navbar-right">
+                        {this.showLoginStatus(isAuthenticated)}
+                    </ul>
+
+                </div>
             </nav>
         )
     }
@@ -52,9 +55,45 @@ class Menu extends Component {
                 return <MenuLink to={menu.to} label={menu.label} exact={menu.exact} key={index} />
             })
         }
-
         return result;
+    }
+
+    showLoginStatus = isAuthenticated => (
+        isAuthenticated ?
+            <button
+                type="button"
+                className="btn btn-danger mt-7 mr-7"
+                onClick={() => this.logout()}
+            >logout
+            </button>
+            :
+            (<Link
+                to='/login'
+                className="btn btn-success mt-7 mr-7"
+            >login
+                </Link>)
+            
+            (<Link
+                to='/signup'
+                className="btn btn-success ml-5"
+            >Sign up
+                </Link>)
+    )
+
+
+    logout = () => {
+        this.props.logout();
     }
 }
 
-export default Menu
+const mapStateToProps = state => {
+    return {
+        isAuthenticated: !!state.user.token
+    }
+}
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+        logout: () => dispatch(logout())
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Menu)
