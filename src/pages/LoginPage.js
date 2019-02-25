@@ -15,6 +15,8 @@ class LoginPage extends Component {
                 <h1>Login Page</h1>
 
                 <LoginForm submit={this.submit} />
+                <br/>
+                <Link to='/signup'>Register</Link>
                 
             </div>
         );

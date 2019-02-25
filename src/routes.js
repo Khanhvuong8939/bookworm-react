@@ -23,7 +23,7 @@ const routes = [
         path: '/signup',
         exact: false,
         role: 'guest',
-        main: () => <SignUpPage />
+        main: ({ history }) => <SignUpPage history={history} />
     },
     {
         path: '/dashboard',

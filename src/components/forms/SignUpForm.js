@@ -21,19 +21,24 @@ class SignUpForm extends Component {
     }
     onChange = event => {
         this.setState({
-            ...this.state, data: {
-                [event.target.name]: event.target.value
+            data: {
+                ...this.state.data, [event.target.name]: event.target.value
             }
         })
     }
 
     onSubmit = event => {
         event.preventDefault();
+        console.log(this.state.data)
         var errors = this.validate(this.state.data);
         this.setState({ errors })
         if (Object.keys(errors).length === 0) {
             this.setState({ loading: true })
-            this.props.submit(this.state.data)
+            var data = {
+                email: this.state.data.email,
+                password: this.state.data.password,
+            }
+            this.props.submit(data)
                 .catch(err => this.setState({ errors: err.response.data.errors, loading: false }))
         }
     }
@@ -70,7 +75,7 @@ class SignUpForm extends Component {
                             name='password'
                             value={data.password}
                             onChange={this.onChange}
-                            placeholder="Enter your email" />
+                            placeholder="Make your password secure" />
                         {errors.password && <InlineError message={errors.password} />}
                     </div>
                     <button className="btn btn-primary">Submit</button>

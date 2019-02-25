@@ -67,17 +67,11 @@ class Menu extends Component {
             >logout
             </button>
             :
-            (<Link
+            <Link
                 to='/login'
                 className="btn btn-success mt-7 mr-7"
             >login
-                </Link>)
-            
-            (<Link
-                to='/signup'
-                className="btn btn-success ml-5"
-            >Sign up
-                </Link>)
+                </Link>
     )
 
 
