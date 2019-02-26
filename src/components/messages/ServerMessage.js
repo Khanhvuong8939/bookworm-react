@@ -11,13 +11,5 @@ const ServerMessage = ({ errStyle, header, content }) => (
     </div>
 )
 
-// ServerMessage.propTypes = {
-//     message: PropTypes.shape({
-//         class: PropTypes.string.isRequired,
-//         header: PropTypes.string.isRequired,
-//         content: PropTypes.string.isRequired
-//     })
-// }
-
 
 export default ServerMessage;

@@ -5,6 +5,7 @@ import LoginPage from './pages/LoginPage';
 import NotFoundPage from './pages/NotFoundPage';
 import DashboardPage from './pages/DashboardPage';
 import SignUpPage from './pages/SignUpPage';
+import ConfirmationPage from './pages/ConfirmationPage';
 
 const routes = [
     {
@@ -30,6 +31,12 @@ const routes = [
         exact: false,
         role: 'user',
         main: ({ history }) => <DashboardPage history={history} />
+    },
+    {
+        path: '/confirmation/:token',
+        exact: false,
+        role: 'user',
+        main: ({ match }) => <ConfirmationPage match={match} />
     },
     {
         path: '',

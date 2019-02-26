@@ -9,18 +9,13 @@ class DashboardPage extends Component {
         var { isConfirmed } = this.props;
         return (
             <div>
-                {isConfirmed ? this.verifyEmail(isConfirmed) : ''}
+                {!isConfirmed && <ServerMessage errStyle='warning' header='Warning' content='Please verify your email to unlock this page'/>}
                 abc
             </div>
         );
     }
 
-    verifyEmail = (isConfirmed) => {
-        var message = { header: 'Warning', content: 'Please verify your email to unlock this page', class:'warning' }
-        if (!isConfirmed) {
-            return <ServerMessage message={message} />
-        }
-    }
+   
 }
 
 DashboardPage.propTypes = {
