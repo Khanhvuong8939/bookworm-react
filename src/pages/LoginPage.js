@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 
 class LoginPage extends Component {
 
-    //submit = data => this.props.login(data).then(user => this.props.history.push('/'));
     submit = data => this.props.login(data).then(() => this.props.history.push('/'));
 
     render() {
@@ -16,7 +15,8 @@ class LoginPage extends Component {
 
                 <LoginForm submit={this.submit} />
                 <br/>
-                <Link to='/signup'>Register</Link>
+                <Link to='/signup'>Register</Link> || 
+                <Link to='/forgot_password'>Forgot Password</Link>
                 
             </div>
         );

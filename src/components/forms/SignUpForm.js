@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import isEmail from 'validator/lib/isEmail';
 import InlineError from '../messages/InlineError';
 import ServerMessage from '../messages/ServerMessage';
@@ -29,7 +28,6 @@ class SignUpForm extends Component {
 
     onSubmit = event => {
         event.preventDefault();
-        console.log(this.state.data)
         var errors = this.validate(this.state.data);
         this.setState({ errors })
         if (Object.keys(errors).length === 0) {

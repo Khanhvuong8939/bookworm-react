@@ -6,6 +6,7 @@ import NotFoundPage from './pages/NotFoundPage';
 import DashboardPage from './pages/DashboardPage';
 import SignUpPage from './pages/SignUpPage';
 import ConfirmationPage from './pages/ConfirmationPage';
+import ForgotPasswordPage from './pages/ForgotPasswordPage.js';
 
 const routes = [
     {
@@ -27,6 +28,12 @@ const routes = [
         main: ({ history }) => <SignUpPage history={history} />
     },
     {
+        path: '/forgot_password',
+        exact: false,
+        role: 'guest',
+        main: ({ history }) => <ForgotPasswordPage history={history} />
+    },
+    {
         path: '/dashboard',
         exact: false,
         role: 'user',
@@ -35,7 +42,7 @@ const routes = [
     {
         path: '/confirmation/:token',
         exact: false,
-        role: 'user',
+        role: 'guest',
         main: ({ match }) => <ConfirmationPage match={match} />
     },
     {
