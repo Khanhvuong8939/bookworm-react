@@ -7,6 +7,7 @@ import DashboardPage from './pages/DashboardPage';
 import SignUpPage from './pages/SignUpPage';
 import ConfirmationPage from './pages/ConfirmationPage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage.js';
+import ResetPasswordPage from './pages/ResetPasswordPage.js';
 
 const routes = [
     {
@@ -28,22 +29,28 @@ const routes = [
         main: ({ history }) => <SignUpPage history={history} />
     },
     {
+        path: '/confirmation/:token',
+        exact: false,
+        role: 'guest',
+        main: ({ match }) => <ConfirmationPage match={match} />
+    },
+    {
         path: '/forgot_password',
         exact: false,
         role: 'guest',
         main: ({ history }) => <ForgotPasswordPage history={history} />
     },
     {
+        path: '/reset_password/:token',
+        exact: false,
+        role: 'guest',
+        main: ({ match, history }) => <ResetPasswordPage match={match} history={history} />
+    },
+    {
         path: '/dashboard',
         exact: false,
         role: 'user',
         main: ({ history }) => <DashboardPage history={history} />
-    },
-    {
-        path: '/confirmation/:token',
-        exact: false,
-        role: 'guest',
-        main: ({ match }) => <ConfirmationPage match={match} />
     },
     {
         path: '',

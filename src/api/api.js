@@ -13,6 +13,10 @@ export default {
             request('POST', 'api/auth/confirmation', { token })
                 .then(res => res.data.user),
         resetPasswordRequest: (email) =>
-            request('POST', 'api/auth/reset_password_request', { email: email })
+            request('POST', 'api/auth/reset_password_request', { email: email }),
+        validateToken: (token) =>
+            request('POST', 'api/auth/validate_token', { token }),
+        resetPassword: data =>
+            request('POST', 'api/auth/reset_password', { data })
     }
 }

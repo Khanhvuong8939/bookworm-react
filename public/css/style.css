@@ -15,3 +15,13 @@
 .mr-7{
     margin-right: 7px
 }
+
+/* avatar */
+.navbar-nav>li>a>img.profile-image {
+    height: 50px;
+}
+
+.menu-link{
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
